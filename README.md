@@ -26,10 +26,10 @@ Sistem ini merupakan aplikasi kasir berbasis web yang dibangun dengan Laravel. A
 
 ## 📁 Struktur Folder Penting
 resources/
-├── views/
-│ ├── layouts/
-│ │ └── app.blade.php # Template layout utama
-│ ├── pengelolaan.blade.php # Halaman daftar produk (card)
-│ └── dashboard.blade.php # Halaman kasir swalayan (tabel + perhitungan)
-public/
-└── images/ # Folder untuk gambar produk lokal
+- ├── views/
+- │ ├── layouts/
+- │ │ └── app.blade.php # Template layout utama
+- │ ├── pengelolaan.blade.php # Halaman daftar produk (card)
+- │ └── dashboard.blade.php # Halaman kasir swalayan (tabel + perhitungan)
+- public/
+- └── images/ # Folder untuk gambar produk lokal
