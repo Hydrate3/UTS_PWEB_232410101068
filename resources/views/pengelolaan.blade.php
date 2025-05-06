@@ -3,21 +3,27 @@
 @section('content')
     <h1 class="mb-4">Daftar Produk</h1>
 
-    @foreach(array_chunk($products, 3) as $productRow)
+    @foreach(array_chunk($products, 3) as $groupedProducts)
         <div class="row mb-4">
-            @foreach($productRow as $product)
-                <div class="col-md-4">
-                    <div class="card h-60 shadow-sm">
-                        <img src="{{ $product['gambar'] }}" class="card-img-top" alt="{{ $product['nama'] }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $product['nama'] }}</h5>
-                            <p class="card-text">Harga: Rp {{ number_format($product['harga'], 0, ',', '.') }}</p>
-                            <p class="card-text">
-                                Stok: <span id="stok-{{ $product['id'] }}">{{ $product['stok'] }}</span>
-                            </p>
-                            <div class="d-flex justify-content-between">
-                                <button class="btn btn-sm btn-primary" onclick="ubahStok({{ $product['id'] }}, 1)">+</button>
-                                <button class="btn btn-sm btn-danger" onclick="ubahStok({{ $product['id'] }}, -1)">-</button>
+            @foreach($groupedProducts as $item)
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="card shadow-sm w-100 h-100">
+                        <img src="{{ Str::startsWith($item['gambar'], 'http') ? $item['gambar'] : asset($item['gambar']) }}" 
+                            class="card-img-top img-fluid" 
+                            style="height: 200px; object-fit: contain;" 
+                            alt="{{ $item['nama'] }}">
+
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title">{{ $item['nama'] }}</h5>
+                                <p class="card-text">Harga: Rp {{ number_format($item['harga'], 0, ',', '.') }}</p>
+                                <p class="card-text">
+                                    Stok: <span id="stock-{{ $item['id'] }}">{{ $item['stok'] }}</span>
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between mt-3">
+                                <button class="btn btn-sm btn-primary" onclick="updateStock({{ $item['id'] }}, 1)">+</button>
+                                <button class="btn btn-sm btn-danger" onclick="updateStock({{ $item['id'] }}, -1)">-</button>
                             </div>
                         </div>
                     </div>
@@ -27,12 +33,12 @@
     @endforeach
 
     <script>
-        function ubahStok(id, perubahan) {
-            const stokEl = document.getElementById(`stok-${id}`);
-            let stok = parseInt(stokEl.innerText);
-            stok += perubahan;
-            if (stok < 0) stok = 0;
-            stokEl.innerText = stok;
+        function updateStock(id, change) {
+            const stockElement = document.getElementById(`stock-${id}`);
+            let stock = parseInt(stockElement.innerText);
+            stock += change;
+            if (stock < 0) stock = 0;
+            stockElement.innerText = stock;
         }
     </script>
 @endsection

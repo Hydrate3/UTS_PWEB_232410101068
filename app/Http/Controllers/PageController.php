@@ -26,46 +26,135 @@ class PageController extends Controller
 
     public function showDashboard()
     {
-        return view('dashboard', [
-            'username' => session('username')
-        ]);
-    }
-    
-
-    
-
-    // Pengelolaan Produk
-    public function showPengelolaan()
-    {
+        $username = session('username');
+        
         $products = [
             [
                 'id' => 1,
-                'nama' => 'Indomie Goreng',
+                'nama' => 'mi goreng 75gr',
                 'harga' => 3500,
                 'stok' => 50,
                 'gambar' => 'images/intermi.png'
             ],
             [
                 'id' => 2,
-                'nama' => 'Aqua 600ml',
+                'nama' => 'air 600ml',
                 'harga' => 3000,
                 'stok' => 100,
-                'gambar' => 'https://images.unsplash.com/photo-1609942739764-df5b92e752c7?auto=format&fit=crop&w=400&q=80'
+                'gambar' => 'images/air botol.webp'
             ],
             [
                 'id' => 3,
-                'nama' => 'Chitato 80g',
+                'nama' => 'chips 80g',
                 'harga' => 12000,
                 'stok' => 30,
-                'gambar' => 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=400&q=80'
+                'gambar' => 'images/kentangchip.jpg'
             ],
+            [
+                'id' => 4,
+                'nama' => 'telur 1kg',
+                'harga' => 26000,
+                'stok' => 16,
+                'gambar' => 'images/elegg.webp'
+            ],
+            [
+                'id' => 5,
+                'nama' => 'detergen 1lt',
+                'harga' => 23000,
+                'stok' => 16,
+                'gambar' => 'images/detergen.jpg'
+            ],
+            [
+                'id' => 6,
+                'nama' => 'sabun batangan 100gr',
+                'harga' => 4000,
+                'stok' => 34,
+                'gambar' => 'images/sabun.jpg'
+            ],
+            [
+                'id' => 7,
+                'nama' => 'susu 1lt',
+                'harga' => 20000,
+                'stok' => 16,
+                'gambar' => 'images/susu.jpg'
+            ],
+            [
+                'id' => 8,
+                'nama' => 'minyak goreng 1lt',
+                'harga' => 20000,
+                'stok' => 16,
+                'gambar' => 'images/minyak.jpeg'
+            ]
+        ];
+    
+        return view('dashboard', compact('username', 'products'));
+    }
+        public function showPengelolaan()
+    {
+        $products = [
+            [
+                'id' => 1,
+                'nama' => 'mi goreng 75gr',
+                'harga' => 3500,
+                'stok' => 50,
+                'gambar' => 'images/intermi.png'
+            ],
+            [
+                'id' => 2,
+                'nama' => 'air 600ml',
+                'harga' => 3000,
+                'stok' => 100,
+                'gambar' => 'images/air botol.webp'
+            ],
+            [
+                'id' => 3,
+                'nama' => 'chips 80g',
+                'harga' => 12000,
+                'stok' => 30,
+                'gambar' => 'images/kentangchip.jpg'
+            ],
+            [
+                'id' => 4,
+                'nama' => 'telur 1kg',
+                'harga' => 26000,
+                'stok' => 16,
+                'gambar' => 'images/elegg.webp'
+            ],
+            [
+                'id' => 5,
+                'nama' => 'detergen 1lt',
+                'harga' => 23000,
+                'stok' => 16,
+                'gambar' => 'images/detergen.jpg'
+            ],
+            [
+                'id' => 6,
+                'nama' => 'sabun batangan 100gr',
+                'harga' => 4000,
+                'stok' => 34,
+                'gambar' => 'images/sabun.jpg'
+            ],
+            [
+                'id' => 7,
+                'nama' => 'susu 1lt',
+                'harga' => 20000,
+                'stok' => 16,
+                'gambar' => 'images/susu.jpg'
+            ],
+            [
+                'id' => 8,
+                'nama' => 'minyak goreng 1lt',
+                'harga' => 20000,
+                'stok' => 16,
+                'gambar' => 'images/minyak.jpeg'
+            ]
+
         ];
     
         return view('pengelolaan', compact('products'));
     }
     
 
-    // Profil
     public function showProfile()
     {
         return view('profile', [

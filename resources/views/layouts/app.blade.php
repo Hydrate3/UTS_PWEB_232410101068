@@ -22,7 +22,6 @@
             margin: 0 auto;
         }
 
-        /* Navbar Styles */
         .navbar {
             background: #2c3e50;
             padding: 1rem;
